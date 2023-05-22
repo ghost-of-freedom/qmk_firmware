@@ -6,6 +6,7 @@ LTO_ENABLE = yes
 SPACE_CADET_ENABLE = no
 GRAVE_ESC_ENABLE = no
 MUSIC_ENABLE = no
+AUDIO_ENABLE = no
 
 CAPS_WORD_ENABLE = yes
 BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
@@ -16,8 +17,6 @@ COMMAND_ENABLE = yes        # Commands for debug and configuration
 NKRO_ENABLE = yes           # Enable N-Key Rollover
 BACKLIGHT_ENABLE = no       # Enable keyboard backlight functionality
 RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
-AUDIO_ENABLE = yes          # Audio output
-AUDIO_DRIVER = dac_additive
 CUSTOM_MATRIX = lite
 SWAP_HANDS_ENABLE = yes
 RGB_MATRIX_ENABLE = yes
