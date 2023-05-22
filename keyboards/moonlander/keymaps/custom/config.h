@@ -20,6 +20,9 @@
 
 #define ORYX_CONFIGURATOR
 
+#define TAPPING_TERM 200
+#define IGNORE_MOD_TAP_INTERRUPT
+
 // Shave some bytes
 #define NO_MUSIC_MODE
 #undef RGBLIGHT_ANIMATIONS

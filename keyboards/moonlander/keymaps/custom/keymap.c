@@ -40,8 +40,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_CAPS_WORD_TOGGLE, KC_A, KC_R, KC_S, KC_T, KC_G, KC_NO,
         KC_NO, KC_M, KC_N, KC_E, KC_I, KC_O, KC_PAGE_DOWN,
         
-        KC_NO, KC_X, KC_C, KC_D, KC_V, KC_Z,
-        KC_K, KC_H, KC_COMMA, KC_DOT, KC_SLASH, KC_END,
+        KC_NO, LALT_T(KC_X), LGUI_T(KC_C), LSFT_T(KC_D), LCTL_T(KC_V), KC_Z,
+        KC_K, RCTL_T(KC_H), RSFT_T(KC_COMMA), RGUI_T(KC_DOT), RALT_T(KC_SLASH), KC_END,
         
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_KB_VOLUME_DOWN,
         KC_KB_VOLUME_UP, KC_NO, KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,
