@@ -1,6 +1,12 @@
 # Build Options
 #   change yes to no to disable
 #
+# Save space on unused features
+LTO_ENABLE = yes
+SPACE_CADET_ENABLE = no
+GRAVE_ESC_ENABLE = no
+MUSIC_ENABLE = no
+
 CAPS_WORD_ENABLE = yes
 BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
 MOUSEKEY_ENABLE = yes       # Mouse keys
