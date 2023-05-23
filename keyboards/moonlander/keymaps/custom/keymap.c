@@ -26,7 +26,10 @@ enum layers {
 };
 
 enum custom_keycodes {
-    VRSN = SAFE_RANGE,
+    PARENS = SAFE_RANGE,
+    CURLY,
+    SQUARE,
+    DQUOTE,
 };
 
 // clang-format off
@@ -57,7 +60,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_LEFT_PAREN, KC_RIGHT_PAREN, KC_MINUS, KC_UNDERSCORE, KC_TILDE, KC_NO,
         KC_NO, KC_NO, KC_EXCLAIM, KC_AT, KC_HASH, KC_NO, KC_NO,
         
-        KC_NO, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_QUOTE, KC_DOUBLE_QUOTE, KC_TILDE, KC_NO,
+        KC_NO, KC_LEFT_BRACKET, KC_RIGHT_BRACKET, KC_QUOTE, DQUOTE, KC_TILDE, KC_NO,
         KC_NO, KC_NO, KC_DOLLAR, KC_PERCENT, KC_CIRCUMFLEX, KC_PIPE, KC_NO,
         
         KC_NO, KC_LEFT_CURLY_BRACE, KC_RIGHT_CURLY_BRACE, KC_GRAVE, KC_EQUAL, KC_NO,
@@ -66,7 +69,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         
-        _______, _______, _______, _______, _______, _______
+        PARENS, SQUARE, CURLY, _______, _______, _______
         ),
 
     [NUMB] = LAYOUT_moonlander(
@@ -111,8 +114,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
-        case VRSN:
-            SEND_STRING (QMK_KEYBOARD "/" QMK_KEYMAP " @ " QMK_VERSION);
+        case PARENS:
+            SEND_STRING(SS_LSFT("90") SS_TAP(X_LEFT));
+            return false;
+        case CURLY:
+            SEND_STRING(SS_LSFT("[]") SS_TAP(X_LEFT));
+            return false;
+        case SQUARE:
+            SEND_STRING("[]" SS_TAP(X_LEFT));
+            return false;
+        case DQUOTE:
+            SEND_STRING(SS_LSFT("''") SS_TAP(X_LEFT));
             return false;
         }
     }
