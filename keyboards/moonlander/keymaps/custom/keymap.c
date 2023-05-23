@@ -22,6 +22,7 @@ enum layers {
     BASE,  // default layer
     SYMB,  // symbols
     NUMB,  // numbers
+    MOVE,
 };
 
 enum custom_keycodes {
@@ -37,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_Q, KC_W, KC_F, KC_P, KC_B, KC_NO,
         KC_NO, KC_J, KC_L, KC_U, KC_Y, KC_SEMICOLON, KC_PAGE_UP,
         
-        QK_CAPS_WORD_TOGGLE, KC_A, KC_R, KC_S, KC_T, KC_G, KC_NO,
+        QK_CAPS_WORD_TOGGLE, KC_A, KC_R, KC_S, LT(MOVE, KC_T), KC_G, KC_NO,
         KC_NO, KC_M, KC_N, KC_E, KC_I, KC_O, KC_PAGE_DOWN,
         
         KC_NO, LALT_T(KC_X), LGUI_T(KC_C), LSFT_T(KC_D), LCTL_T(KC_V), KC_Z,
@@ -84,6 +85,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_0, KC_0, KC_0, KC_NO, KC_NO,
         
+        _______, _______, _______, _______, _______, _______
+        ),
+
+    [MOVE] = LAYOUT_moonlander(
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, LCTL(KC_LEFT), KC_UP, LCTL(KC_RIGHT), KC_NO, KC_NO,
+
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_HOME, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END, KC_NO,
+
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+
         _______, _______, _______, _______, _______, _______
         ),
 };
