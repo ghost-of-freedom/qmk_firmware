@@ -8,6 +8,7 @@ GRAVE_ESC_ENABLE = no
 MUSIC_ENABLE = no
 AUDIO_ENABLE = no
 
+COMBO_ENABLE = yes
 CAPS_WORD_ENABLE = yes
 BOOTMAGIC_ENABLE = yes      # Enable Bootmagic Lite
 MOUSEKEY_ENABLE = yes       # Mouse keys

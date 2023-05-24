@@ -32,6 +32,43 @@ enum custom_keycodes {
     DQUOTE,
 };
 
+enum combo_events {
+    SV_ESC,
+    COMBO_LENGTH
+};
+
+uint16_t COMBO_LEN = COMBO_LENGTH;
+const uint16_t PROGMEM esc_combo[] = {KC_S, LCTL_T(KC_V), COMBO_END};
+
+combo_t key_combos[] = {
+    [SV_ESC] = COMBO_ACTION(esc_combo),
+};
+
+void process_combo_event(uint16_t combo_index, bool pressed) {
+    switch(combo_index) {
+    case SV_ESC:
+        if(pressed) {
+            tap_code16(KC_ESC);
+        }
+        break;
+    }
+}
+
+bool get_combo_must_press_in_order(uint16_t combo_index, combo_t *combo) {
+    switch (combo_index) {
+        default:
+            return true;
+    }
+}
+
+uint16_t get_combo_term(uint16_t index, combo_t *combo) {
+    switch (index) {
+        case SV_ESC:
+            return 75;
+    }
+    return COMBO_TERM;
+}
+
 // clang-format off
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [BASE] = LAYOUT_moonlander(
