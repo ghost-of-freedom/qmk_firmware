@@ -111,6 +111,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         ),
 };
 
+uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case LT(MOVE, KC_T):
+        return 150;
+    case LALT_T(KC_X):
+    case LGUI_T(KC_C):
+    case LSFT_T(KC_D):
+    case LCTL_T(KC_V):
+    case RCTL_T(KC_H):
+    case RSFT_T(KC_COMMA):
+    case RGUI_T(KC_DOT):
+    case RALT_T(KC_SLASH):
+        return 175;
+    default:
+        return TAPPING_TERM;
+    }
+}
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (record->event.pressed) {
         switch (keycode) {
