@@ -36,23 +36,35 @@ enum custom_keycodes {
 
 enum combo_events {
     SV_ESC,
+    COMMAD_CAPS_LOCK,
+    VOLDOWNVOLUP_MUTE,
     COMBO_LENGTH
 };
 
 uint16_t COMBO_LEN = COMBO_LENGTH;
 const uint16_t PROGMEM esc_combo[] = {KC_S, LCTL_T(KC_V), COMBO_END};
+const uint16_t PROGMEM capslock_combo[] = {RSFT_T(KC_COMMA), LSFT_T(KC_D), COMBO_END};
+const uint16_t PROGMEM mute_combo[] = {KC_KB_VOLUME_DOWN, KC_KB_VOLUME_UP, COMBO_END};
 
 combo_t key_combos[] = {
     [SV_ESC] = COMBO_ACTION(esc_combo),
+    [COMMAD_CAPS_LOCK] = COMBO_ACTION(capslock_combo),
+    [VOLDOWNVOLUP_MUTE] = COMBO_ACTION(mute_combo),
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
-    switch(combo_index) {
-    case SV_ESC:
-        if(pressed) {
+    if(pressed) {
+        switch(combo_index) {
+        case SV_ESC:
             tap_code16(KC_ESC);
+            break;
+        case COMMAD_CAPS_LOCK:
+            tap_code16(KC_CAPS_LOCK);
+            break;
+        case VOLDOWNVOLUP_MUTE:
+            tap_code16(KC_KB_MUTE);
+            break;
         }
-        break;
     }
 }
 
@@ -67,6 +79,9 @@ uint16_t get_combo_term(uint16_t index, combo_t *combo) {
     switch (index) {
         case SV_ESC:
             return 75;
+    case COMMAD_CAPS_LOCK:
+    case VOLDOWNVOLUP_MUTE:
+        return 100;
     }
     return COMBO_TERM;
 }
