@@ -23,6 +23,7 @@ enum layers {
     SYMB,  // symbols
     NUMB,  // numbers
     MOVE,
+    TOHO,
 };
 
 enum custom_keycodes {
@@ -30,6 +31,7 @@ enum custom_keycodes {
     CURLY,
     SQUARE,
     DQUOTE,
+    FIRE_TOGGLE,
 };
 
 enum combo_events {
@@ -75,14 +77,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         QK_BOOT, KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,
         KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12, KC_HOME,
         
-        KC_NO, KC_Q, KC_W, KC_F, KC_P, KC_B, KC_NO,
+        KC_NO, KC_Q, KC_W, KC_F, KC_P, KC_B, TG(TOHO),
         KC_NO, KC_J, KC_L, KC_U, KC_Y, KC_SEMICOLON, KC_PAGE_UP,
         
         QK_CAPS_WORD_TOGGLE, KC_A, KC_R, KC_S, LT(MOVE, KC_T), KC_G, KC_NO,
         KC_NO, KC_M, KC_N, KC_E, KC_I, KC_O, KC_PAGE_DOWN,
         
         KC_NO, LALT_T(KC_X), LGUI_T(KC_C), LSFT_T(KC_D), LCTL_T(KC_V), KC_Z,
-        KC_K, RCTL_T(KC_H), RSFT_T(KC_COMMA), RGUI_T(KC_DOT), RALT_T(KC_SLASH), KC_END,
+        KC_K, RCTL_T(KC_H), RSFT_T(KC_COMMA), RGUI_T(KC_DOT), LALT_T(KC_SLASH), KC_END,
         
         RGB_TOG, KC_NO, KC_NO, KC_NO, TT(NUMB), KC_KB_VOLUME_DOWN,
         KC_KB_VOLUME_UP, TT(SYMB), KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,
@@ -146,6 +148,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
         _______, _______, _______, _______, _______, _______
         ),
+
+    [TOHO] = LAYOUT_moonlander(
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, TG(TOHO),
+        KC_NO, KC_NO, KC_NO, KC_UP, KC_NO, KC_NO, KC_NO,
+
+        KC_NO, KC_NO, KC_C, KC_LEFT_SHIFT, KC_Z, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO, KC_NO,
+
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+        KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+
+        FIRE_TOGGLE, _______, _______, _______, _______, KC_X
+        ),
 };
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
@@ -167,6 +188,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static bool fire_on = false;
     if (record->event.pressed) {
         switch (keycode) {
         case PARENS:
@@ -180,6 +202,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             return false;
         case DQUOTE:
             SEND_STRING(SS_LSFT("''") SS_TAP(X_LEFT));
+            return false;
+        case FIRE_TOGGLE:
+            if(fire_on) {
+                unregister_code16(KC_Z);
+                fire_on = false;
+            } else {
+                register_code16(KC_Z);
+                fire_on = true;
+            }
             return false;
         }
     }
