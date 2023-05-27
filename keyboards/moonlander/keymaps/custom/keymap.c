@@ -53,6 +53,7 @@ combo_t key_combos[] = {
 };
 
 void process_combo_event(uint16_t combo_index, bool pressed) {
+    static bool commad_caps_lock_on = false;
     if(pressed) {
         switch(combo_index) {
         case SV_ESC:
@@ -60,6 +61,15 @@ void process_combo_event(uint16_t combo_index, bool pressed) {
             break;
         case COMMAD_CAPS_LOCK:
             tap_code16(KC_CAPS_LOCK);
+            if(commad_caps_lock_on) {
+                rgb_matrix_set_color(18, 0, 0, 0);
+                rgb_matrix_set_color(54, 0, 0, 0);
+                commad_caps_lock_on = false;
+            } else {
+                rgb_matrix_set_color(18, 255, 255, 255);
+                rgb_matrix_set_color(54, 255, 255, 255);
+                commad_caps_lock_on = true;
+            }
             break;
         case VOLDOWNVOLUP_MUTE:
             tap_code16(KC_KB_MUTE);
