@@ -114,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         RGB_TOG, KC_NO, KC_NO, KC_NO, TT(NUMB), KC_KB_VOLUME_DOWN,
         KC_KB_VOLUME_UP, TT(SYMB), KC_UP, KC_DOWN, KC_LEFT, KC_RIGHT,
         
-        KC_SPACE, KC_TAB, KC_ESCAPE, KC_DELETE, KC_ENTER, KC_BACKSPACE
+        LT(NUMB, KC_SPACE), KC_TAB, KC_ESCAPE, KC_DELETE, KC_ENTER, LT(SYMB, KC_BACKSPACE)
         ),
 
     [SYMB] = LAYOUT_moonlander(
@@ -171,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
-        _______, _______, _______, _______, _______, LCTL(KC_O)
+        KC_F12, _______, _______, _______, _______, LCTL(KC_O)
         ),
 
     [TOHO] = LAYOUT_moonlander(
@@ -198,6 +198,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
     case LT(MOVE, KC_T):
         return 150;
+    case LT(NUMB, KC_SPACE):
+    case LT(SYMB, KC_BACKSPACE):
     case LALT_T(KC_X):
     case LGUI_T(KC_C):
     case LSFT_T(KC_D):
