@@ -21,7 +21,6 @@ RGBLIGHT_ENABLE = no        # Enable keyboard RGB underglow
 CUSTOM_MATRIX = lite
 SWAP_HANDS_ENABLE = yes
 RGB_MATRIX_ENABLE = yes
-RGB_MATRIX_DRIVER = IS31FL3731
 EEPROM_DRIVER = i2c
 
 #project specific files
