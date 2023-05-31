@@ -171,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
         KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
 
-        KC_F12, _______, _______, _______, _______, LCTL(KC_O)
+        KC_F12, _______, _______, _______, _______, LCTL(KC_BACKSPACE)
         ),
 
     [TOHO] = LAYOUT_moonlander(
